@@ -16,5 +16,12 @@ ADD ./run.sh /usr/local/bin/run
 #RUN rm -rf /opt/tomcat/webapps/docs /opt/tomcat/webapps/examples /opt/tomcat/webapps/ROOT
 #ADD yourfile.war /opt/tomcat/webapps/ROOT.war
 
+RUN chown -R 1001:0 /opt/tomcat && \
+    chmod -R ug+rw /opt/tomcat && \
+    find /opt/tomcat -type d -exec chmod g+x {} +
+
+USER 1001
+
+
 EXPOSE 8080
 CMD ["/usr/local/bin/run"]
